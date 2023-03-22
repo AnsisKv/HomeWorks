@@ -71,9 +71,19 @@ print("Triangle perimeter: \(trianglePerimeter)")
  */
 
 
-var totalYearsFromBirth = myAge / 1
-var totalMonthFromBirth = myAge * 12
-var totalDaysFromBirth = Int(myAge) * Int(daysInYear)
+let dateFormatter = DateFormatter()
+dateFormatter.dateFormat = "dd/MM/yyyy"
+let myBirthDate = dateFormatter.date(from: "07/05/1997")
+
+let calendar = Calendar.current
+let ageCalendar = calendar.dateComponents([.year, .month, .day], from: myBirthDate!, to: Date())
+
+let totalYearsFromBirth = ageCalendar.year!
+let totalMonths = ageCalendar.month!
+let totalDays = ageCalendar.day!
+
+let totalMonthFromBirth = totalYearsFromBirth * 12 + totalMonths
+let totalDaysFromBirth = calendar.dateComponents([.day], from: myBirthDate!, to: Date()).day!
 
 print("Total years: \(totalYearsFromBirth) , total months: \(totalMonthFromBirth), total days: \(totalDaysFromBirth)")
 
