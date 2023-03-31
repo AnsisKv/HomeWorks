@@ -73,17 +73,20 @@ print("Triangle perimeter: \(trianglePerimeter)")
 
 let dateFormatter = DateFormatter()
 dateFormatter.dateFormat = "dd/MM/yyyy"
-let myBirthDate = dateFormatter.date(from: "07/05/1997")
 
 let calendar = Calendar.current
-let ageCalendar = calendar.dateComponents([.year, .month, .day], from: myBirthDate!, to: Date())
 
-let totalYearsFromBirth = ageCalendar.year!
-let totalMonths = ageCalendar.month!
-let totalDays = ageCalendar.day!
+let currentDate = Date()
 
-let totalMonthFromBirth = totalYearsFromBirth * 12 + totalMonths
-let totalDaysFromBirth = calendar.dateComponents([.day], from: myBirthDate!, to: Date()).day!
+let myBirthDateString = "07.05.1997"
 
-print("Total years: \(totalYearsFromBirth) , total months: \(totalMonthFromBirth), total days: \(totalDaysFromBirth)")
+let myBirthDate = dateFormatter.date(from: myBirthDateString) ?? Date()
 
+var totalYearsFromBirth = calendar.dateComponents([.year], from: myBirthDate, to: currentDate).year
+var totalMonthFromBirth = calendar.dateComponents([.month], from: myBirthDate, to: currentDate).month
+var totalDaysFromBirth = calendar.dateComponents([.day], from: myBirthDate, to: currentDate).day
+
+if totalYearsFromBirth == 0 || totalMonthFromBirth == 0 || totalDaysFromBirth == 0 {
+    print("unable to convert")
+} else {
+    print("Total years: \(totalYearsFromBirth!) , total months: \(totalMonthFromBirth!), total days: \(totalDaysFromBirth!) have passed")
